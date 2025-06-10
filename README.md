@@ -1,4 +1,4 @@
-<details>
+<details open>
 <summary>English</summary>
 
 # Sound By Sound Slowly
