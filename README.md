@@ -90,4 +90,4 @@ An AI-powered WeChat Mini Program for daily sign-in, pronunciation practice, and
 
 ## License
 
-This project is licensed under the MIT License. See [LICENSE](LICENSE) for details. 
+This project is licensed under the Apache License 2.0. See [LICENSE](LICENSE) for details. 
