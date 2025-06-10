@@ -1,0 +1,95 @@
+/* crop-avatar.wxss */
+page {
+  background-color: #000000;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.crop-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  color: #ffffff;
+  padding: 0 30rpx;
+}
+
+.title {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin: 40rpx 0;
+}
+
+.cropper-wrapper {
+  width: 100%;
+  height: 65vh;
+  position: relative;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin: 30rpx 0;
+}
+
+.control-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.control-icon {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40rpx;
+  margin-bottom: 10rpx;
+}
+
+.control-text {
+  font-size: 24rpx;
+  color: #ffffff;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 30rpx;
+}
+
+.cancel-btn, .confirm-btn {
+  width: 45%;
+  border-radius: 45rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  color: #ffffff;
+  font-size: 32rpx;
+}
+
+.cancel-btn {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1rpx solid rgba(255, 255, 255, 0.3);
+}
+
+.confirm-btn {
+  background-color: #3cc51f;
+}
+
+.tip {
+  position: absolute;
+  bottom: 30rpx;
+  width: 100%;
+  text-align: center;
+}
+
+.tip text {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.6);
+} 

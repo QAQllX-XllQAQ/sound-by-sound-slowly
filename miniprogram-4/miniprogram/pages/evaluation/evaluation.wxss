@@ -1,0 +1,268 @@
+/* evaluation.wxss */
+page {
+  background-color: #f8f8f8;
+}
+
+.container {
+  padding: 20rpx;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30rpx;
+}
+
+.title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 内容区域样式 */
+.content-card {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content-text {
+  font-size: 34rpx;
+  color: #333;
+  margin-bottom: 30rpx;
+  text-align: center;
+  padding: 0 20rpx;
+}
+
+/* 音频播放控制 */
+.audio-control {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.play-icon {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.play-inner {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 16rpx 0 16rpx 30rpx;
+  border-color: transparent transparent transparent #3cc51f;
+  margin-left: 5rpx;
+}
+
+.play-icon.playing .play-inner {
+  width: 30rpx;
+  height: 30rpx;
+  border: none;
+  background-color: #3cc51f;
+  margin-left: 0;
+}
+
+.play-text {
+  font-size: 26rpx;
+  color: #666;
+  margin-top: 15rpx;
+}
+
+/* 录音控制样式 */
+.recording-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.recording-indicator {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.recording-dot {
+  width: 16rpx;
+  height: 16rpx;
+  background-color: #f00;
+  border-radius: 50%;
+  margin-right: 10rpx;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.recording-indicator text {
+  font-size: 28rpx;
+  color: #f00;
+}
+
+.recording-btn {
+  background-color: #ff4d4f;
+  color: #fff;
+  padding: 15rpx 40rpx;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  margin-top: 10rpx;
+}
+
+/* 评测结果区域样式 */
+.result-container {
+  margin-bottom: 30rpx;
+}
+
+.score-card {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: center;
+}
+
+.score-circle {
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 50%;
+  background-color: #3cc51f;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  box-shadow: 0 2rpx 20rpx rgba(60, 197, 31, 0.3);
+}
+
+.score-value {
+  font-size: 60rpx;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.score-text {
+  font-size: 28rpx;
+  margin-top: 10rpx;
+}
+
+.spectrogram-container {
+  width: 100%;
+  height: 150px;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+
+.spectrogram-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.ipa-card, .pronunciation-card, .spectrogram-card, .feedback-card {
+  margin-top: 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30rpx;
+}
+
+.ipa-text {
+  font-family: Arial, sans-serif;
+  font-size: 30rpx;
+  padding: 15rpx;
+  line-height: 1.5;
+  color: #333;
+  background-color: #f8f8f8;
+  border-radius: 8rpx;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+  padding-left: 20rpx;
+  border-left: 8rpx solid #3cc51f;
+}
+
+.tip {
+  font-size: 24rpx;
+  color: #999;
+  text-align: center;
+}
+
+.feedback-list {
+  padding: 10rpx 0;
+}
+
+.feedback-item {
+  display: flex;
+  margin-bottom: 20rpx;
+  padding: 0 10rpx;
+}
+
+.feedback-dot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  background-color: #3cc51f;
+  margin-top: 10rpx;
+  margin-right: 15rpx;
+  flex-shrink: 0;
+}
+
+.feedback-text {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* 底部操作按钮样式 */
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.action-btn {
+  width: 48%;
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  border-radius: 12rpx;
+}
+
+.action-btn.primary {
+  background-color: #3cc51f;
+  color: #fff;
+}
+
+.action-btn.secondary {
+  background-color: #f5f5f5;
+  color: #666;
+} 
