@@ -1,0 +1,89 @@
+<!-- settings.wxml -->
+<view class="card">
+  <view class="header">
+    <view class="title">API Settings</view>
+    <view class="subtitle">Configure your API keys for full functionality</view>
+  </view>
+
+  <view class="api-guide" bindtap="openApiGuide">
+    <text class="guide-text">How to get API keys?</text>
+    <text class="guide-icon">?</text>
+  </view>
+
+  <!-- 头像上传部分 -->
+  <view class="avatar-section">
+    <view class="section-title">Profile Avatar Settings</view>
+    <view class="avatar-description">Upload your avatar for more accurate lip simulation</view>
+    
+    <view class="avatar-container" bindtap="chooseUserAvatar">
+      <image 
+        class="avatar-image" 
+        src="{{userAvatarUrl || '/static/images/default-avatar.png'}}" 
+        mode="aspectFill"
+      ></image>
+      <view class="avatar-placeholder" wx:if="{{!userAvatarUrl}}">
+        <text class="avatar-icon">+</text>
+        <text class="avatar-text">Tap to Upload</text>
+      </view>
+      <view class="avatar-uploaded" wx:else>
+        <text class="avatar-text">Tap to Change</text>
+      </view>
+    </view>
+    
+    <view class="avatar-tip">
+      * We recommend uploading a clear frontal selfie for best results
+    </view>
+  </view>
+
+  <view class="form-container">
+    <view class="form-item">
+      <view class="form-label">Large Language Model API Key</view>
+      <input 
+        class="form-input" 
+        type="text" 
+        placeholder="Enter API key" 
+        value="{{llmApiKey}}" 
+        data-field="llmApiKey"
+        bindinput="onInputChange"
+        password="{{true}}"
+      />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">Pronunciation Evaluation API Key</view>
+      <input 
+        class="form-input" 
+        type="text" 
+        placeholder="Enter API key" 
+        value="{{iflyApiKey}}" 
+        data-field="iflyApiKey"
+        bindinput="onInputChange"
+        password="{{true}}"
+      />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">FaceFusion API Key</view>
+      <input 
+        class="form-input" 
+        type="text" 
+        placeholder="Enter API key" 
+        value="{{facefusionApiKey}}" 
+        data-field="facefusionApiKey"
+        bindinput="onInputChange"
+        password="{{true}}"
+      />
+    </view>
+  </view>
+
+  <view class="button-container">
+    <view class="btn-primary {{saved ? 'btn-disabled' : ''}}" bindtap="saveAPIKeys">
+      {{saved ? 'Saved' : 'Save Settings'}}
+    </view>
+    <view class="btn-disabled mt-20" bindtap="resetAPIKeys">Reset</view>
+  </view>
+
+  <view class="footer">
+    <text class="footer-text">声声慢语言矫正助手 © 2025</text>
+  </view>
+</view> 

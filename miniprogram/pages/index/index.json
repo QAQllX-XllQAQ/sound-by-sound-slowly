@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "Sound By Sound Slowly",
+  "usingComponents": {
+    "navigation-bar": "/components/navigation-bar/navigation-bar"
+  }
+}

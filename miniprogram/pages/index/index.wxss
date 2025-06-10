@@ -1,0 +1,149 @@
+/**index.wxss**/
+.page {
+  /* no local background needed; global page style applies */
+}
+
+.container {
+  padding: 20rpx;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40rpx;
+}
+
+.title {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.subtitle {
+  font-size: 28rpx;
+  color: #888;
+  margin-top: 10rpx;
+}
+
+.stats-container {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 40rpx;
+}
+
+.stats-item {
+  text-align: center;
+}
+
+.stats-value {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #26A69A;
+}
+
+.stats-label {
+  font-size: 26rpx;
+  color: #666;
+  margin-top: 10rpx;
+}
+
+.calendar-container {
+  /* margins/padding are inside .card */
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.month-selector {
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32rpx;
+  color: #666;
+  background-color: #f5f5f5;
+  border-radius: 50%;
+}
+
+.month-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.weekday-header {
+  display: flex;
+  margin-bottom: 20rpx;
+}
+
+.weekday {
+  flex: 1;
+  text-align: center;
+  font-size: 26rpx;
+  color: #999;
+}
+
+.calendar-days {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.calendar-day {
+  width: 14.28%;
+  height: 80rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30rpx;
+  color: #333;
+  position: relative;
+}
+
+.calendar-day.today {
+  color: #26A69A;
+  font-weight: bold;
+}
+
+.calendar-day.signed::after {
+  content: '';
+  position: absolute;
+  bottom: 8rpx;
+  width: 8rpx;
+  height: 8rpx;
+  background-color: #26A69A;
+  border-radius: 50%;
+}
+
+.sign-in-btn {
+  background-color: #3cc51f;
+  color: #fff;
+  text-align: center;
+  padding: 24rpx 0;
+  border-radius: 12rpx;
+  margin-bottom: 30rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.sign-in-btn.signed {
+  background-color: #e0e0e0;
+  color: #888;
+}
+
+.start-learning-btn {
+  background-color: #1aad19;
+  color: #fff;
+  text-align: center;
+  padding: 24rpx 0;
+  border-radius: 12rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.btn-disabled {
+  opacity: 0.6;
+}
