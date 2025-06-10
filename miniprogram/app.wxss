@@ -1,0 +1,40 @@
+/* Global styles */
+page {
+  background-color: #f5f5f5;
+}
+
+.card {
+  background-color: #fff;
+  padding: 30rpx;
+  margin: 20rpx;
+  border-radius: 20rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.1);
+}
+
+.btn-primary {
+  background-color: #26A69A;
+  color: #fff;
+  text-align: center;
+  padding: 24rpx 0;
+  border-radius: 16rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.btn-disabled {
+  background-color: #e0e0e0;
+  color: #888;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.mt-20 {
+  margin-top: 20rpx;
+}
