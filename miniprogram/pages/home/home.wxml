@@ -1,0 +1,22 @@
+<!--pages/home/home.wxml-->
+<view class="home">
+  <view class="home_name">
+    <text>垃圾分类</text>
+    <input class="weui-input" maxlength="10" bindinput="bindKeyInput" placeholder="请输入垃圾名称" />
+  </view>
+  <view>
+    <button bindtap="queryData" type="primary">查询</button>
+  </view>
+  <view class="home_output" wx:if="{{!noData}}">
+    <text>该垃圾属于：</text>
+    <view class="home_view">
+      <view class="home_img">
+        <image style="left: {{left}}" src="../../assets/img/img.png"></image>
+      </view>
+    </view>
+  </view>
+  <view class="home_nodata" wx:else>
+    <text>暂未查到数据</text>
+    <view bindtap="toAdd">添加该数据</view>
+  </view>
+</view>

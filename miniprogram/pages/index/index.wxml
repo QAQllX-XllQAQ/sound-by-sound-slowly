@@ -1,0 +1,58 @@
+<!--index.wxml-->
+<view class="card">
+  <view class="header">
+    <view class="title">Sound By Sound Slowly</view>
+    <view class="subtitle">Language Correction & Learning Assistant</view>
+  </view>
+  
+  <view class="stats-container">
+    <view class="stats-item">
+      <view class="stats-value">{{consecutiveDays}}</view>
+      <view class="stats-label">Consecutive Days</view>
+    </view>
+    <view class="stats-item">
+      <view class="stats-value">{{totalDays}}</view>
+      <view class="stats-label">Total Days</view>
+    </view>
+    <view class="stats-item">
+      <view class="stats-value">{{monthDays}}</view>
+      <view class="stats-label">This Month</view>
+    </view>
+  </view>
+  
+  <view class="calendar-container">
+    <view class="calendar-header">
+      <view class="month-selector" bindtap="changeMonth" data-direction="prev">〈</view>
+      <view class="month-title">{{currentYear}}-{{currentMonth}}</view>
+      <view class="month-selector" bindtap="changeMonth" data-direction="next">〉</view>
+    </view>
+    
+    <view class="weekday-header">
+      <view class="weekday">日</view>
+      <view class="weekday">一</view>
+      <view class="weekday">二</view>
+      <view class="weekday">三</view>
+      <view class="weekday">四</view>
+      <view class="weekday">五</view>
+      <view class="weekday">六</view>
+    </view>
+    
+    <view class="calendar-days">
+      <view class="calendar-day {{item.isToday ? 'today' : ''}} {{item.isSignIn ? 'signed' : ''}}" 
+            wx:for="{{calendarDays}}" 
+            wx:key="index">
+        {{item.day}}
+      </view>
+    </view>
+  </view>
+  
+  <view class="mt-20">
+    <view class="btn-primary {{isTodaySignIn ? 'btn-disabled' : ''}}" bindtap="signIn">
+      {{isTodaySignIn ? 'Already Signed In' : 'Sign In Today'}}
+    </view>
+  </view>
+  
+  <view class="mt-20">
+    <view class="btn-primary" bindtap="navigateToLearning">Start Learning</view>
+  </view>
+</view>

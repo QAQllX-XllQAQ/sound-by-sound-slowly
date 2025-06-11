@@ -1,0 +1,130 @@
+<!-- learning.wxml -->
+<view class="card">
+  <view class="header">
+    <view class="title">Pronunciation Learning</view>
+  </view>
+
+  <!-- 输入区域 -->
+  <view class="input-container mt-20">
+    <input 
+      class="content-input" 
+      placeholder="Enter a word or sentence" 
+      value="{{inputContent}}" 
+      bindinput="onInputChange"
+    />
+    <view class="btn-primary mt-20" bindtap="submitContent">Get Pronunciation</view>
+  </view>
+
+  <!-- 结果展示区域 -->
+  <view class="card mt-20" wx:if="{{showResult}}">
+    <!-- 语言类型 -->
+    <view class="language-type">
+      <text>Detected Language: {{language === 'mandarin' ? 'Chinese' : (language === 'english' ? 'English' : 'Mixed')}}</text>
+      <!-- 简化模式提示 -->
+      <text wx:if="{{isSimplifiedMode}}" class="simplified-mode-tag">Simplified Mode</text>
+    </view>
+    
+    <!-- 拼音区域 -->
+    <view class="section" wx:if="{{pinyin}}">
+      <view class="section-title">Pinyin</view>
+      <view class="phonetics">{{pinyin}}</view>
+    </view>
+
+    <!-- 国际音标区域 -->
+    <view class="section">
+      <view class="section-title">IPA</view>
+      <view class="phonetics ipa">{{ipa}}</view>
+    </view>
+
+    <!-- 声调分布区域 - 仅对中文或混合语言显示 -->
+    <view class="section" wx:if="{{language === 'mandarin' || language === 'mixed'}}">
+      <view class="section-title">Tone Distribution</view>
+      <view class="tone-distribution">
+        <view class="tone-bar-container">
+          <view class="tone-bar tone-1" style="width: {{tonePercentages[1]}}%;">
+            <text class="tone-label">Tone 1</text>
+          </view>
+          <view class="tone-value">{{toneDistribution[1]}}个 ({{tonePercentages[1]}}%)</view>
+        </view>
+        <view class="tone-bar-container">
+          <view class="tone-bar tone-2" style="width: {{tonePercentages[2]}}%;">
+            <text class="tone-label">Tone 2</text>
+          </view>
+          <view class="tone-value">{{toneDistribution[2]}}个 ({{tonePercentages[2]}}%)</view>
+        </view>
+        <view class="tone-bar-container">
+          <view class="tone-bar tone-3" style="width: {{tonePercentages[3]}}%;">
+            <text class="tone-label">Tone 3</text>
+          </view>
+          <view class="tone-value">{{toneDistribution[3]}}个 ({{tonePercentages[3]}}%)</view>
+        </view>
+        <view class="tone-bar-container">
+          <view class="tone-bar tone-4" style="width: {{tonePercentages[4]}}%;">
+            <text class="tone-label">Tone 4</text>
+          </view>
+          <view class="tone-value">{{toneDistribution[4]}}个 ({{tonePercentages[4]}}%)</view>
+        </view>
+        <view class="tone-bar-container">
+          <view class="tone-bar tone-5" style="width: {{tonePercentages[5]}}%;">
+            <text class="tone-label">Neutral Tone</text>
+          </view>
+          <view class="tone-value">{{toneDistribution[5]}}个 ({{tonePercentages[5]}}%)</view>
+        </view>
+      </view>
+      <view class="tone-tip">Note: Tone changes affect meaning</view>
+    </view>
+
+    <!-- 发音技巧区域 -->
+    <view class="section">
+      <view class="section-title">Pronunciation Tips</view>
+      <view class="pronunciation-tips">
+        <view class="tip-item" wx:for="{{pronunciationTips}}" wx:key="index">
+          {{index + 1}}. {{item}}
+        </view>
+      </view>
+    </view>
+
+    <!-- 口型示范区域 -->
+    <view class="section">
+      <view class="section-title">Lip Movement Demo</view>
+      <view class="lip-demo">
+        <image class="lip-image" src="/static/images/lip-demo.gif" mode="aspectFit"></image>
+        <view class="tip">Lip movement demo will appear here (server under maintenance)</view>
+      </view>
+    </view>
+
+    <view class="btn-primary mt-20" bindtap="startLearnPhase">Start Practice</view>
+  </view>
+
+  <!-- 录音区域 -->
+  <view class="record-overlay" wx:if="{{showRecord}}">
+    <view class="record-container">
+      <view class="record-title">
+        <text>Record Your Pronunciation</text>
+      </view>
+      
+      <view class="record-content">
+        <view class="record-text">{{inputContent}}</view>
+        
+        <!-- 显示拼音或音标 -->
+        <view class="record-phonetics">
+          <text wx:if="{{language === 'mandarin' || language === 'mixed'}}">{{pinyin}}</text>
+          <text wx:else>{{ipa}}</text>
+        </view>
+        
+        <view class="record-timer">{{recordTimeDisplay}}</view>
+        
+        <view class="record-controls">
+          <view class="record-btn {{isRecording ? 'recording' : ''}}" bindtap="{{isRecording ? 'stopRecording' : 'startRecording'}}">
+            <view class="record-btn-inner"></view>
+          </view>
+          <view class="record-label">{{isRecording ? 'Stop' : 'Start Recording'}}</view>
+        </view>
+      </view>
+      
+      <view class="record-actions">
+        <button class="cancel-btn" bindtap="cancelRecording">Cancel</button>
+      </view>
+    </view>
+  </view>
+</view> 
