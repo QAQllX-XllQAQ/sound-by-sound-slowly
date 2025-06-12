@@ -15,13 +15,19 @@ Page({
         src: options.src
       });
 
-      // 获取设备信息以适配裁剪框大小
-      const systemInfo = wx.getSystemInfoSync();
-      const screenWidth = systemInfo.screenWidth;
-      
+      // 获取设备信息以适配裁剪框大小（兼容新旧 API）
+      let screenWidth = 0;
+      if (wx.getWindowInfo) {
+        // 新版获取窗口信息
+        const winInfo = wx.getWindowInfo();
+        screenWidth = winInfo.windowWidth;
+      } else if (wx.getSystemInfoSync) {
+        // 兼容旧版
+        const sysInfo = wx.getSystemInfoSync();
+        screenWidth = sysInfo.screenWidth;
+      }
       // 裁剪框宽高为屏幕宽度的70%，且为正方形
       const cropSize = Math.floor(screenWidth * 0.7);
-      
       this.setData({
         width: cropSize,
         height: cropSize
@@ -57,19 +63,16 @@ Page({
 
   // 确认裁剪
   confirmCrop() {
+    // 获取事件通道，向上一页回传结果
+    const eventChannel = this.getOpenerEventChannel();
+    // 如果裁剪组件未初始化，则直接返回原始图片路径
     if (!this.cropper) {
-      wx.showToast({
-        title: '裁剪组件未初始化',
-        icon: 'none'
-      });
+      eventChannel.emit('cropComplete', { tempFilePath: this.data.src });
+      wx.navigateBack();
       return;
     }
-    
     // 显示加载提示
-    wx.showLoading({
-      title: '处理中...'
-    });
-    
+    wx.showLoading({ title: '处理中...' });
     // 执行裁剪，获取裁剪后的图片临时路径
     this.cropper.getImg((res) => {
       if (res && res.tempFilePath) {
@@ -77,10 +80,7 @@ Page({
         this.compressImage(res.tempFilePath);
       } else {
         wx.hideLoading();
-        wx.showToast({
-          title: '裁剪失败',
-          icon: 'none'
-        });
+        wx.showToast({ title: '裁剪失败', icon: 'none' });
       }
     });
   },
@@ -95,7 +95,6 @@ Page({
         wx.hideLoading();
         
         // 通过事件回调给上一页面
-        const eventChannel = this.getOpenerEventChannel();
         eventChannel.emit('cropComplete', { tempFilePath: res.tempFilePath });
         
         // 返回上一页
@@ -105,7 +104,6 @@ Page({
         wx.hideLoading();
         
         // 如果压缩失败，使用原图
-        const eventChannel = this.getOpenerEventChannel();
         eventChannel.emit('cropComplete', { tempFilePath });
         
         // 返回上一页
