@@ -20,7 +20,8 @@ Page({
     recordFilePath: '', // 录音文件路径
     isSimplifiedMode: false, // 是否使用简化模式
     toneDistribution: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }, // 声调分布
-    tonePercentages: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } // 声调百分比
+    tonePercentages: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }, // 声调百分比
+    lipGifSrc: '' // 唇动示范 GIF 数据 URL
   },
 
   onLoad: function() {
@@ -134,6 +135,8 @@ Page({
           });
           
           wx.hideLoading();
+          // 请求唇动示范 GIF
+          this.fetchLipSyncGif();
         })
         .catch(error => {
           console.error('处理输入内容出错:', error);
@@ -211,6 +214,43 @@ Page({
         });
         wx.hideLoading();
       });
+  },
+
+  // 向 lip_sync_server 上传用户头像并请求唇动同步 GIF
+  fetchLipSyncGif: function() {
+    const content = this.data.inputContent || '';
+    // 从本地存储获取用户头像路径
+    const imagePath = wx.getStorageSync('userAvatarUrl') || '';
+    if (!content) {
+      wx.showToast({ title: '请输入内容', icon: 'none' });
+      return;
+    }
+    if (!imagePath) {
+      wx.showToast({ title: '请先在设置页上传头像', icon: 'none' });
+      return;
+    }
+    wx.showLoading({ title: '生成唇动示范...' });
+    wx.uploadFile({
+      url: 'http://223.19.238.149:8000/lip_sync', 
+      filePath: imagePath,
+      name: 'image',
+      formData: { text: content },
+      header: { 'content-type': 'multipart/form-data' },
+      success: uploadRes => {
+        wx.hideLoading();
+        if (uploadRes.statusCode === 200 && uploadRes.data) {
+          // uploadRes.data 是 Base64 编码的 GIF 数据，添加 Data URI 前缀
+          this.setData({ lipGifSrc: 'data:image/gif;base64,' + uploadRes.data });
+        } else {
+          wx.showToast({ title: '唇动示范生成失败', icon: 'none' });
+        }
+      },
+      fail: err => {
+        wx.hideLoading();
+        console.error('唇动示范请求失败:', err);
+        wx.showToast({ title: '唇动示范生成失败', icon: 'none' });
+      }
+    });
   },
 
   // 开始学习（展示录音界面）
@@ -311,5 +351,7 @@ Page({
       onError: null,
       onTimeUpdate: null
     };
-  }
+  },
+
+ 
 }) 

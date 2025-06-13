@@ -37,11 +37,16 @@
     "minifyWXML": true,
     "showES6CompileOption": false,
     "useCompilerPlugins": false,
-    "ignoreUploadUnusedFiles": true
+    "ignoreUploadUnusedFiles": true,
+    "compileWorklet": false,
+    "localPlugins": false,
+    "condition": false,
+    "swc": false,
+    "disableSWC": true
   },
   "appid": "wx695b7e2657fe851e",
   "projectname": "%E5%9E%83%E5%9C%BE%E5%88%86%E7%B1%BB",
-  "libVersion": "3.4.9",
+  "libVersion": "3.8.8",
   "cloudfunctionTemplateRoot": "cloudfunctionTemplate/",
   "condition": {
     "search": {
@@ -76,5 +81,6 @@
     "tabIndent": "insertSpaces",
     "tabSize": 2
   },
-  "projectArchitecture": "miniProgram"
+  "projectArchitecture": "miniProgram",
+  "simulatorPluginLibVersion": {}
 }

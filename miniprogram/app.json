@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/learning/learning",
     "pages/evaluation/evaluation",
-    "pages/settings/settings"
+    "pages/settings/settings",
+    "pages/settings/crop-avatar/crop-avatar"
   ],
   "window": {
     "backgroundTextStyle": "light",
