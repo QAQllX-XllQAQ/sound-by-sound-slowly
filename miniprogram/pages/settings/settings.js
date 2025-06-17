@@ -1,14 +1,11 @@
 // settings.js
 Page({
   data: {
-    // API配置
     llmApiKey: '',
     iflyApiKey: '',
     facefusionApiKey: '',
-    // 用户头像
     userAvatarUrl: '',
-    // 保存状态
-    saved: false
+    saved: true
   },
 
   onLoad: function() {
@@ -26,7 +23,7 @@ Page({
 
   // 加载API密钥
   loadAPIKeys: function() {
-    const llmApiKey = wx.getStorageSync('llmApiKey') || '';
+    const llmApiKey = wx.getStorageSync('llmApiKey') || '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';
     const iflyApiKey = wx.getStorageSync('iflyApiKey') || '';
     const facefusionApiKey = wx.getStorageSync('facefusionApiKey') || '';
     

@@ -42,6 +42,12 @@
       <view class="ipa-text">{{ipaResult}}</view>
     </view>
     
+    <!-- 生成声谱图中提示 -->
+    <view class="spectrogram-loading" wx:if="{{spectrogramLoading}}">
+      <view class="section-title">Spectrogram Analysis</view>
+      <view class="loading-text">Generating spectrogram...</view>
+    </view>
+    
     <!-- 声谱图区域 -->
     <view class="spectrogram-card" wx:if="{{showSpectrogram}}">
       <view class="section-title">Spectrogram Analysis</view>

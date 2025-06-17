@@ -41,7 +41,7 @@
       <input 
         class="form-input" 
         type="text" 
-        placeholder="Enter API key" 
+        placeholder="Leave blank to use built-in API key" 
         value="{{llmApiKey}}" 
         data-field="llmApiKey"
         bindinput="onInputChange"
@@ -54,7 +54,7 @@
       <input 
         class="form-input" 
         type="text" 
-        placeholder="Enter API key" 
+        placeholder="Leave blank to use built-in API key" 
         value="{{iflyApiKey}}" 
         data-field="iflyApiKey"
         bindinput="onInputChange"
@@ -67,7 +67,7 @@
       <input 
         class="form-input" 
         type="text" 
-        placeholder="Enter API key" 
+        placeholder="Leave blank to use built-in API key" 
         value="{{facefusionApiKey}}" 
         data-field="facefusionApiKey"
         bindinput="onInputChange"
@@ -84,6 +84,6 @@
   </view>
 
   <view class="footer">
-    <text class="footer-text">声声慢语言矫正助手 © 2025</text>
+    <text class="footer-text">聲聲慢 © 2025</text>
   </view>
 </view> 

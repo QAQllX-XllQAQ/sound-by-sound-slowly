@@ -77,7 +77,8 @@ Page({
     ipaResult: '', // AI分析结果的国际音标
     pronunciationTips: [], // AI分析结果的发音要点
     recordTimeDisplay: '00:00', // 录音时间显示
-    language: '' // 语言类型
+    language: '', // 语言类型
+    spectrogramLoading: false, // 是否正在生成声谱图
   },
 
   onLoad: function(options) {
@@ -411,6 +412,7 @@ Text: "${content}"`;
 
   // 生成声谱图
   analyzeSpectrogram(filePath) {
+    this.setData({ spectrogramLoading: true, showSpectrogram: false });
     wx.showLoading({ title: 'Analyzing spectrogram...' });
     
     // 检查是否为HTTP/HTTPS链接
@@ -428,14 +430,14 @@ Text: "${content}"`;
             console.error('文件下载失败，状态码:', res.statusCode);
             wx.hideLoading();
             wx.showToast({ title: 'Failed to download audio', icon: 'none' });
-            this.setData({ showSpectrogram: false });
+            this.setData({ showSpectrogram: false, spectrogramLoading: false });
           }
         },
         fail: (err) => {
           console.error('下载文件失败:', err);
           wx.hideLoading();
           wx.showToast({ title: 'Failed to download audio', icon: 'none' });
-          this.setData({ showSpectrogram: false });
+          this.setData({ showSpectrogram: false, spectrogramLoading: false });
         }
       });
     } else {
@@ -463,7 +465,7 @@ Text: "${content}"`;
             console.error('文件大小不足，无法解析WAV格式');
             wx.hideLoading();
             wx.showToast({ title: 'Audio format error', icon: 'none' });
-            this.setData({ showSpectrogram: false });
+            this.setData({ showSpectrogram: false, spectrogramLoading: false });
             return;
           }
           
@@ -489,7 +491,7 @@ Text: "${content}"`;
             console.error('音频样本数量不足，无法执行FFT处理');
             wx.hideLoading();
             wx.showToast({ title: '音频太短，无法分析', icon: 'none' });
-            this.setData({ showSpectrogram: false });
+            this.setData({ showSpectrogram: false, spectrogramLoading: false });
             return;
           }
           
@@ -541,24 +543,24 @@ Text: "${content}"`;
           // 确保成功生成声谱图数据
           if (spectrogramData.length === 0) {
             console.warn('无法生成声谱图数据');
-            this.setData({ showSpectrogram: false });
+            this.setData({ showSpectrogram: false, spectrogramLoading: false });
             wx.showToast({ title: 'Unable to generate spectrogram', icon: 'none' });
             return;
           }
           
-          this.setData({ showSpectrogram: true });
+          this.setData({ showSpectrogram: true, spectrogramLoading: false });
         } catch (error) {
           console.error('处理音频数据时出错:', error);
           wx.hideLoading();
           wx.showToast({ title: '音频处理失败', icon: 'none' });
-          this.setData({ showSpectrogram: false });
+          this.setData({ showSpectrogram: false, spectrogramLoading: false });
         }
       },
       fail: (err) => {
         console.error('读取文件失败:', err);
         wx.hideLoading();
         wx.showToast({ title: 'Failed to read audio', icon: 'none' });
-        this.setData({ showSpectrogram: false });
+        this.setData({ showSpectrogram: false, spectrogramLoading: false });
       }
     });
   },
